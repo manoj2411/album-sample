@@ -1,0 +1,28 @@
+
+<%= form_for(@user, :html => {:multipart => true, :class => "table-bordered"}) do |f| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inline">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class='row'>&nbsp;</div>
+  <div id="albums" class='table-bordered'>
+    <%= render( partial: 'albums/album', collection: @user.albums) %>
+  </div>
+  <%= link_to 'Add Album', new_album_path, remote: true, class: 'btn btn-small icon-plus btn-primary' %>
+  <div class='row'>&nbsp;</div>
+  <%= f.submit :class => 'btn-primary btn-large'%>
+<% end %>

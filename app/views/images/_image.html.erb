@@ -1,0 +1,14 @@
+<div class='image form-inline table-bordered'>
+  <%= fields_for "user[albums_attributes][#{ num}][images_attributes][#{rand( 10000000)}]", image do |img| %>
+    <%= image_tag( img.object.photo.url( :thumb), class: "img-polaroid") unless img.object.new_record? %>
+    <%= img.file_field( :photo) %>
+    <%= img.label :description %>
+    <%= img.text_area :description, rows: 2 %>
+    <%= img.label :tags %>
+    <%= img.text_area :tags, rows: 2 %>
+    <%= img.hidden_field :id %>
+    <%= img.hidden_field :_destroy, value: false, class: 'destroy' %>
+
+  <% end -%>
+  <%= link_to_function 'Remove Image', 'remove_element(this)', class: 'btn  icon-minus btn-small btn-danger' %>
+</div>

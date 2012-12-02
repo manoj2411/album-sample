@@ -1,0 +1,32 @@
+<div class="table-bordered">
+  <h3>User details</h3>
+  <div class="table-bordered">
+    Name: <%= @user.name %>
+    <div class='row'> &nbsp;</div>
+    <div class="table-bordered">
+      <h6>Albums</h6>
+      <% @user.albums.each do |_album| %>
+        <div class="well well-small">
+          <p> Album Name: <%= _album.name %> </p>
+
+          <% _album.images.each do |img| %>
+            <div class="well well-samll">
+              <%=image_tag img.photo.url( :medium), class: "img-polaroid" %>
+              <strong class="label label-info">Description: </strong> <%= img.description %>
+              <p>
+                <strong class="label label-info">Tags: </strong>
+                <% img.tag_list.each do |_tag|%>
+                  <span class="label label-important"> <%= _tag %></span>
+                <% end %>
+              </p>
+            </div>
+          <% end -%>
+        </div>
+      <% end -%>
+
+    </div>
+  </div>
+</div>
+
+<%= link_to 'back to all users', users_path %> |
+<%= link_to 'edit user', edit_user_path( @user), class: "icon-user"%>

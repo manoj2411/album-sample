@@ -1,0 +1,27 @@
+<div class='row'>
+  &nbsp;
+</div>
+
+<table class='table table-hover'>
+  <caption><h3> Users list</h3> </caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |_usr| %>
+      <tr>
+        <td> <%= _usr.name %> </td>
+        <td> <%= link_to 'Show', user_path( _usr), :class => 'btn btn-small icon-user' %>
+             <%= link_to 'Edit', edit_user_path( _usr), :class => 'btn btn-small icon-pencil' %>
+              <%= link_to 'Destroy', user_path( _usr), method: :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger btn-small icon-trash' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+<%= link_to 'Add new user', new_user_path, :class => 'btn btn-primary btn-large icon-user'%>

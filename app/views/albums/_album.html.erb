@@ -1,0 +1,21 @@
+<div class='table-bordered'>
+  <% _num = album.id.blank? ? rand(1000000) : album.id %>
+ <div id='album-<%= _num %>' class='album'>
+  <%= fields_for "user[albums_attributes][#{ _num}]", album do |f| %>
+    <div class="form-inline">
+      <%= f.label :name, 'Album name'%>
+      <%= f.text_field :name %>
+    </div>
+    <div class='row'>&nbsp;</div>
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :_destroy, value: false, class: 'destroy' %>
+
+    <%= render( partial: 'images/image', collection: album.images, locals: { num: _num})%>
+  <%  end -%>
+ </div>
+
+  <%= link_to_function 'Remove Album', 'remove_element(this)', class: 'btn icon-remove pull-right btn-danger' %>
+  <%= link_to 'Add Image', new_image_path( album: _num), remote: true, class: 'btn icon-plus btn-small pull-right btn-primary' %>
+  <div class='row'>&nbsp;</div>
+  <div class='row'>&nbsp;</div>
+</div>
