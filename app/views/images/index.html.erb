@@ -1,0 +1,4 @@
+<h4> Images </h4>
+<%= @images.present? ? render( partial: :image, collection: @images) : "no image exists " %>
+
+<%= link_to( 'back', users_path, class: 'btn') %>

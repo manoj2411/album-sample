@@ -9,18 +9,7 @@
         <div class="well well-small">
           <p> Album Name: <%= _album.name %> </p>
 
-          <% _album.images.each do |img| %>
-            <div class="well well-samll">
-              <%=image_tag img.photo.url( :medium), class: "img-polaroid" %>
-              <strong class="label label-info">Description: </strong> <%= img.description %>
-              <p>
-                <strong class="label label-info">Tags: </strong>
-                <% img.tag_list.each do |_tag|%>
-                  <span class="label label-important"> <%= _tag %></span>
-                <% end %>
-              </p>
-            </div>
-          <% end -%>
+          <%= render partial: 'images/image', collection: _album.images %>
         </div>
       <% end -%>
 

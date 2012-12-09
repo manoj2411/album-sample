@@ -14,4 +14,17 @@ describe ImagesController do
     end
   end
 
+  describe "GET index" do
+    it "assigns images with given tag to @images" do
+      image = Image.create( :photo => File.new( "#{Rails.root}/app/assets/images/rails.png"), :tag_list =>"t1, t2")
+      get :index, {:tag => "t2" }
+      assigns(:images).should eq([image])
+    end
+
+    it "renders the index template" do
+      get :index, { :tag => "t2"}
+      response.should render_template("index")
+    end
+  end
+
 end

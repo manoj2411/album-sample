@@ -2,7 +2,7 @@ AlbumSample::Application.routes.draw do
 
   resources :users
   resources :albums, :only => [ :new]
-  resources :images, :only => [ :new]
+  resources :images, :only => [ :new, :index]
 
   root :to => 'users#index'
   # The priority is based upon order of creation:
